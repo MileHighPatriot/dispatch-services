@@ -1,0 +1,94 @@
+@import 'tailwindcss';
+
+/*
+ * Dispatch Services. Saddle leather from the business card's rider, on parchment.
+ * Serif headlines for a legal feel, a plain sans for everything you read.
+ */
+@theme {
+  --font-display: 'Source Serif 4 Variable', Georgia, 'Times New Roman', serif;
+  --font-sans: 'Public Sans Variable', system-ui, -apple-system, 'Segoe UI', sans-serif;
+
+  --color-ink: #1f1813;
+  --color-ink-soft: #4a3d33;
+  --color-muted: #6f6052;
+  --color-leather: #643110;
+  --color-leather-deep: #4a230b;
+  --color-saddle: #8a4a1c;
+  --color-brass: #c58b3a;
+  --color-brass-soft: #e9cf9f;
+  --color-parchment: #f5eee2;
+  --color-paper: #fcf9f3;
+  --color-line: #e2d5c1;
+  --color-night: #1c1511;
+  --color-ok: #2f6b45;
+  --color-warn: #9a5b12;
+}
+
+@layer base {
+  html {
+    -webkit-text-size-adjust: 100%;
+    scroll-behavior: smooth;
+  }
+  body {
+    @apply bg-paper text-ink font-sans antialiased;
+    font-size: 1.0625rem;
+    line-height: 1.6;
+  }
+  h1,
+  h2,
+  h3 {
+    @apply font-display text-ink;
+    text-wrap: balance;
+    letter-spacing: -0.01em;
+  }
+  ::selection {
+    background: var(--color-brass-soft);
+  }
+  :focus-visible {
+    outline: 2px solid var(--color-saddle);
+    outline-offset: 2px;
+  }
+}
+
+@utility container-page {
+  width: 100%;
+  max-width: 76rem;
+  margin-inline: auto;
+  padding-inline: 1rem;
+  @media (width >= 40rem) {
+    padding-inline: 1.5rem;
+  }
+}
+
+@utility eyebrow {
+  @apply text-xs font-semibold uppercase text-saddle;
+  letter-spacing: 0.16em;
+}
+
+@utility btn {
+  @apply inline-flex items-center justify-center gap-2 rounded-md px-5 py-3 text-[0.95rem] font-semibold transition-colors;
+}
+@utility btn-primary {
+  @apply bg-leather text-paper hover:bg-leather-deep;
+}
+@utility btn-ghost {
+  @apply border border-line bg-paper text-ink hover:border-saddle hover:text-leather;
+}
+@utility btn-light {
+  @apply bg-paper text-leather hover:bg-parchment;
+}
+
+@utility field {
+  @apply block w-full rounded-md border border-line bg-white px-3 py-2.5 text-base text-ink placeholder:text-muted/70 focus:border-saddle focus:outline-none focus:ring-2 focus:ring-brass-soft;
+}
+
+/* Fine ruled lines, like a ledger page. */
+@utility ruled {
+  background-image: repeating-linear-gradient(
+    to bottom,
+    transparent 0,
+    transparent 31px,
+    color-mix(in srgb, var(--color-line) 70%, transparent) 31px,
+    color-mix(in srgb, var(--color-line) 70%, transparent) 32px
+  );
+}
